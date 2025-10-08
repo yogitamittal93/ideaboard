@@ -138,7 +138,6 @@ export default function IdeaCard({ idea, refetchIdeas }: IdeaCardProps) {
 				</div>
 
 				{/* Upvote Button (Handles API call and refetches) */}
-				{/* @ts-ignore: We must ignore this due to the unavailable dependency file (UpvoteButton.tsx) not having the correct prop definition */}
 				<UpvoteButton
 					ideaId={idea.id}
 					currentVotes={idea.upvotes ?? 0}

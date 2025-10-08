@@ -6,15 +6,24 @@ interface UpvoteButtonProps {
   ideaId: string;
   currentVotes: number;
   refetchIdeas: () => void;
+  onVisualUpvote?: () => void; // Optional callback for visual feedback in parent
 }
 
-export default function UpvoteButton({ ideaId, currentVotes, refetchIdeas }: UpvoteButtonProps) {
+export default function UpvoteButton({ 
+  ideaId, 
+  currentVotes, 
+  refetchIdeas, 
+  onVisualUpvote 
+}: UpvoteButtonProps) {
   const handleUpvote = async () => {
     try {
       // 1. Send the upvote request
       await upvoteIdea(ideaId);
 
-      // 2. CRITICAL: Trigger an immediate refetch of the idea list
+      // 2. Trigger visual feedback immediately (if provided)
+      onVisualUpvote?.();
+
+      // 3. CRITICAL: Trigger an immediate refetch of the idea list
       refetchIdeas(); 
 
     } catch (error) {
