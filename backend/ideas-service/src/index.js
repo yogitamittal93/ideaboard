@@ -1,26 +1,24 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import pkg from "pg";
+import pool from "./db.js"; 
 import ideasRouter from "./routes.js";
 
-const { Pool } = pkg;
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+export const pgPool = pool; // Use the imported pool across the service
 
 async function initDB() {
   try {
-    await pool.query("SELECT NOW()");
+    await pgPool.query("SELECT NOW()");
     console.log("✅ Connected to PostgreSQL successfully");
   } catch (err) {
-    console.error("❌ Database connection failed:", err.message);
+    // Log the full error to help debug deployment issues
+    console.error("❌ Database connection failed:", err); 
     process.exit(1);
   }
 }

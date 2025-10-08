@@ -1,16 +1,16 @@
 import pkg from "pg";
 const { Pool } = pkg;
 
-// --- FIX: Force SSL to resolve 'SSL/TLS required' error on cloud hosts ---
+// Configuration object starts with the basic connection string
 const poolConfig = {
     connectionString: process.env.DATABASE_URL,
-    // Add the SSL object directly, forcing it for all environments that have DATABASE_URL set.
+    // --- FIX: Force SSL to resolve 'SSL/TLS required' error on cloud hosts ---
     ssl: {
         // This is necessary because Render's DB uses self-signed certificates.
         rejectUnauthorized: false
     }
+    // --- END FIX ---
 };
-// --- END FIX ---
 
 const pool = new Pool(poolConfig);
 
