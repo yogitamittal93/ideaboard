@@ -1,9 +1,13 @@
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Body styling */
 body {
   @apply bg-slate-50 text-slate-900;
 }
+
+/* === Animations === */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
@@ -12,6 +16,7 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-in-out forwards;
 }
+
 /* === Sticky Note Styling === */
 .sticky-note {
   position: relative;
@@ -46,4 +51,60 @@ body {
 /* Optional subtle variation for each card */
 .sticky-note:nth-child(odd) {
   transform: rotate(1.5deg);
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .sticky-note {
+    transform: rotate(-0.5deg);
+  }
+  .sticky-note:nth-child(odd) {
+    transform: rotate(0.5deg);
+  }
+}
+
+/* Upvote button glow feedback (optional if using motion) */
+.upvote-flash {
+  animation: upvoteGlow 0.6s ease-out forwards;
+}
+
+@keyframes upvoteGlow {
+  0% { box-shadow: 0 0 0 rgba(52, 199, 89, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(52, 199, 89, 0.7); }
+  100% { box-shadow: 0 0 0 rgba(52, 199, 89, 0); }
+}
+
+/* Text adjustments for better hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: #1D1D1F;
+}
+
+p {
+  color: #1D1D1F;
+  line-height: 1.5rem;
+}
+
+/* Responsive container padding adjustments */
+.container {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Card shadow refinement */
+.card {
+  @apply bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300;
+}
+
+/* Buttons styling for consistent UI */
+button {
+  @apply font-medium transition-all duration-200;
+}
+
+button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Textarea and input focus states */
+input:focus,
+textarea:focus {
+  @apply outline-none ring-2 ring-blue-500;
 }
