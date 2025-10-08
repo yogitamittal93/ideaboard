@@ -8,7 +8,7 @@ const router = express.Router();
  * GET /ideas
  * Fetch all ideas, most recent first
  */
-router.get("/", async (req, res) => {
+router.get("/ideas", async (req, res) => {
   try {
     const { rows } = await pool.query(
       "SELECT id, text, upvotes, created_at FROM ideas ORDER BY created_at DESC"
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
  * POST /ideas
  * Create a new idea (max 280 characters)
  */
-router.post("/", async (req, res) => {
+router.post("/ideas", async (req, res) => {
   try {
 
     const { text } = req.body;
@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
  * POST /ideas/:id/upvote
  * Increment upvote count for an idea
  */
-router.post("/:id/upvote", async (req, res) => {
+router.post("/ideas/:id/upvote", async (req, res) => {
   try {
     const { id } = req.params;
 
