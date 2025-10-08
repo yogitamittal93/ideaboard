@@ -21,7 +21,7 @@ export default function Hero() {
               Launch Idea Board →
             </a>
             <span className="text-gray-500 mt-2 sm:mt-0 text-center sm:text-left text-sm sm:text-base">
-              It's live. It's anonymous. It's fast.
+              It&apos;s live. It&apos;s anonymous. It&apos;s fast.
             </span>
           </div>
         </div>
