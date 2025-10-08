@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: ideaflow
+    service: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: frontend
+  template:
+    metadata:
+      labels:
+        app: ideaflow
+        service: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ideaflow-frontend # Replace with your actual Docker Hub image path
+          ports:
+            - containerPort: 3000 # Next.js default port
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+---

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+  labels:
+    app: ideaflow
+    service: api-gateway
+spec:
+  replicas: 1 # Start with 1 replica for simplicity
+  selector:
+    matchLabels:
+      service: api-gateway
+  template:
+    metadata:
+      labels:
+        app: ideaflow
+        service: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: ideaflow-api-gateway # Replace with your actual Docker Hub image path
+          ports:
+            - containerPort: 8080 # Assuming your API Gateway runs on this port
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+---
