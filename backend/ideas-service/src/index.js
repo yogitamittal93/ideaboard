@@ -10,7 +10,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-export const pgPool = pool; // Use the imported pool across the service
 
 async function initDB() {
   try {
@@ -25,7 +24,7 @@ async function initDB() {
 initDB();
 
 // Mount main router
-app.use("/ideas", ideasRouter);
+app.use("/", ideasRouter);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`🚀 Ideas Service running on port ${PORT}`));

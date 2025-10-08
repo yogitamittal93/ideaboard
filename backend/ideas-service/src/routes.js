@@ -1,5 +1,6 @@
 import express from "express";
-import { pool } from "./index.js";
+// FIX: Import the default export 'pool' directly from db.js
+import pool from "./db.js"; 
 
 const router = express.Router();
 
@@ -25,6 +26,7 @@ router.get("/", async (req, res) => {
  */
 router.post("/", async (req, res) => {
   try {
+
     const { text } = req.body;
 
     if (!text || typeof text !== "string" || text.trim().length === 0 || text.length > 280) {
